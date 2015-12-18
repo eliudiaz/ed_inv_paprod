@@ -1,15 +1,14 @@
 {
   "name": "jquery-nestable",
-  "version": "0.0.1",
+  "homepage": "https://github.com/thesabbir/jquery-nestable",
   "authors": [
-    "Sabbir Ahmed <sabbiirr@gmail.com>"
+    "Sabbir Ahmed <mai@thesabbir.com>"
   ],
-  "description": "Drag & drop hierarchical list with mouse and touch compatibility (jQuery plugin). This is a forked version from https://github.com/brunobatista/Nestable",
+  "description": "Drag & drop hierarchical list with mouse and touch compatibility",
   "main": "jquery.nestable.js",
   "keywords": [
-    "drag",
-    "drop",
-    "jquery"
+    "jQuery",
+    "Nestable"
   ],
   "license": "MIT",
   "ignore": [
@@ -19,17 +18,13 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "jquery": ">= 1.7.2"
-  },
-  "homepage": "https://github.com/thesabbir/jquery-nestable",
-  "_release": "0.0.1",
+  "_release": "6932ce28fc",
   "_resolution": {
-    "type": "version",
-    "tag": "0.0.1",
-    "commit": "1a1feac0ca6381c9d0dcc836e8460188ffbb7c79"
+    "type": "branch",
+    "branch": "master",
+    "commit": "6932ce28fc7326f395eabba0c2c1c2254bfb4c8a"
   },
   "_source": "git://github.com/thesabbir/jquery-nestable.git",
-  "_target": "~0.0.1",
-  "_originalSource": "jquery-nestable"
+  "_target": "*",
+  "_originalSource": "git://github.com/thesabbir/jquery-nestable"
 }
