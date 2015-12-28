@@ -35,8 +35,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             abstract: true
         }).state('app.maintenance', {
             url: "/maintenance",
-            templateUrl: "assets/views/maintenance_view.html",
-            resolve: loadSequence('remoteDao', 'ngTable', 'maintCtrl'),
+            templateUrl: "assets/views/inv_app_maint_view.html",
+            resolve: loadSequence('ngTable', 'maintCtrl'),
             title: 'Mantenimiento',
             ncyBreadcrumb: {
                 label: 'Mantenimiento-Base'

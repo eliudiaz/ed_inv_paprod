@@ -106,13 +106,39 @@ app.controller('maintCtrl', ["$scope", "ngTableParams", function ($scope, ngTabl
                 $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }
         });
-        $scope.delAction = function () {
-
+        $scope.delAction = function (id) {
+            for (var i = 0; i < data.length - 1; i++) {
+                if (data[i].id === id) {
+                    data.splice(i, 1);
+                }
+            }
         };
-        $scope.editAction = function () {
-
+        $scope.editAction = function (row) {
+            if (row !== null) {
+                $scope.showRowDetail(row);
+            }
+            // TODO: show wrong param alert!
         };
         $scope.newAction = function () {
+            $scope.showRowDetail(null);
+        };
+        /**
+         * 
+         * @param {type} row element
+         * @returns {undefined}
+         */
+        $scope.showRowDetail = function (element) {
+            if (element === null) {
+                element = {};
+            }
+            $scope.showRowDetailView(element);
+        };
+        /**
+         * 
+         * @param {type} el
+         * @returns nothing
+         */
+        $scope.showRowDetailView = function (el) {
 
         };
     }]);
