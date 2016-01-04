@@ -10,170 +10,88 @@
 <!-- end: DASHBOARD TITLE -->
 <!-- start: FEATURED BOX LINKS -->
 <div id="data_area" ng-controller="maintCtrl">
-    <!-- form starts -->
-    <form name="Form" id="form1" novalidate ng-submit="form.submit(Form)">
-        <div class="container-fluid container-fullw bg-white">
-            <div class="row">
-                <div class="col-md-6">
-                    <fieldset>
-                        <legend>
-                            Detalle de registro
-                        </legend>
-                        <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
-                            <label class="control-label">
-                                Name <span class="symbol required"></span>
-                            </label>
-                            <input type="text" placeholder="Enter your Name" class="form-control" name="name" ng-model="rowModel.name" required />
-                            <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">Field is required</span>
-                            <!--<span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>-->
-                        </div>
-                        <div class="form-group" ng-class="{'has-error':Form.alias.$dirty && Form.alias.$invalid, 'has-success':Form.alias.$valid}">
-                            <label class="control-label">
-                                Last Name <span class="symbol required"></span>
-                            </label>
-                            <input type="text" placeholder="Enter your Alias" class="form-control" name="alias" ng-model="rowModel.alias" required />
-                            <span class="error text-small block" ng-if="Form.alias.$dirty && Form.alias.$invalid">Field is required</span>
-                            <!--<span class="success text-small" ng-if="Form.alias.$valid">Wonderful!</span>-->
-                        </div>
-                        <div class="form-group" ng-class="{'has-error':Form.publisher.$dirty && Form.publisher.$invalid, 'has-success':Form.publisher.$valid}">
-                            <label class="control-label">
-                                Email <span class="symbol required"></span>
-                            </label>
-                            <input type="email" placeholder="Enter a publisher" class="form-control" name="email" ng-model="rowModel.publisher" required>
-                            <span class="error text-small block" ng-if="Form.publisher.$dirty && Form.publisher.$error.required">Publisher is required.</span>
-                            <!--<span class="error text-small block" ng-if="Form.publisher.$error.publisher">Please, enter a valid email address.</span>-->
-                            <!--<span class="success text-small" ng-if="Form.publisher.$valid">It's a valid e-mail!</span>-->
-                        </div>
-                        <div class="form-group" ng-class="{'has-error':Form.gender.$dirty && Form.gender.$invalid, 'has-success':Form.gender.$valid}">
-                            <label class="control-label block">
-                                Gender <span class="symbol required"></span>
-                            </label>
-                            <div class="clip-radio radio-primary">
-                                <input type="radio" id="wd-female" name="gender" value="female" ng-model="rowModel.gender" required>
-                                <label for="wd-female">
-                                    Female
-                                </label>
-                                <input type="radio" id="wd-male" name="gender" value="male" ng-model="rowModel.gender" required>
-                                <label for="wd-male">
-                                    Male
-                                </label>
+    <div  class="container-fluid container-fullw bg-white">
+        <!-- form starts -->
+        <div ng-show="showForm" class="row">
+            <form name="Row" id="row" novalidate ng-submit="form.submit(Row)">
+                <div class="container-fluid container-fullw bg-white">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <legend>
+                                    Datos de Registro
+                                </legend>
+                                <div class="form-group" ng-class="{'has-error':Row.full_name.$dirty && Row.full_name.$invalid, 'has-success':Row.full_name.$valid}">
+                                    <label class="control-label">
+                                        Name <span class="symbol required"></span>
+                                    </label>
+                                    <input type="text" placeholder="Enter your Name" class="form-control" name="full_name" ng-model="rowModel.full_name" required />
+                                    <span class="error text-small block" ng-if="Row.full_name.$dirty && Row.full_name.$invalid">Field is required</span>
+                                    <!--<span class="success text-small" ng-if="Row.full_name.$valid">Thank You!</span>-->
+                                </div>
+                                <div class="form-group" ng-class="{'has-error':Row.address.$dirty && Row.address.$invalid, 'has-success':Row.address.$valid}">
+                                    <label class="control-label">
+                                        Address <span class="symbol required"></span>
+                                    </label>
+                                    <input type="text" placeholder="Enter your Alias" class="form-control" name="address" ng-model="rowModel.address" required />
+                                    <span class="error text-small block" ng-if="Row.address.$dirty && Row.address.$invalid">Field is required</span>
+                                    <!--<span class="success text-small" ng-if="Row.address.$valid">Wonderful!</span>-->
+                                </div>
+                                <div class="form-group" ng-class="{'has-error':Row.home_phone.$dirty && Row.home_phone.$invalid, 'has-success':Row.home_phone.$valid}">
+                                    <label class="control-label">
+                                        Home Phone <span class="symbol required"></span>
+                                    </label>
+                                    <input type="tel" placeholder="Enter a phone" class="form-control" name="home_phone" ng-model="rowModel.home_phone" required>
+                                    <span class="error text-small block" ng-if="Row.home_phone.$dirty && Row.home_phone.$error.required">Home phone is required.</span>
+                                    <!--<span class="error text-small block" ng-if="Row.home_phone.$error.home_phone">Please, enter a valid email address.</span>-->
+                                    <!--<span class="success text-small" ng-if="Row.home_phone.$valid">It's a valid e-mail!</span>-->
+                                </div>
+                                <div class="form-group" ng-class="{'has-error':Row.cell_phone.$dirty && Row.cell_phone.$invalid, 'has-success':Row.cell_phone.$valid}">
+                                    <label class="control-label">
+                                        Cell Phone <span class="symbol required"></span>
+                                    </label>
+                                    <input type="tel" placeholder="Enter a phone" class="form-control" name="cell_phone" ng-model="rowModel.cell_phone" required>
+                                    <span class="error text-small block" ng-if="Row.cell_phone.$dirty && Row.cell_phone.$error.required">Cell phone is required.</span>
+                                    <!--<span class="error text-small block" ng-if="Row.home_phone.$error.home_phone">Please, enter a valid email address.</span>-->
+                                    <!--<span class="success text-small" ng-if="Row.home_phone.$valid">It's a valid e-mail!</span>-->
+                                </div>
+                                <div class="form-group" ng-class="{'has-error':Row.person_type.$dirty && Row.person_type.$invalid, 'has-success':Row.person_type.$valid}">
+                                    <label class="control-label block">
+                                        Person Type <span class="symbol required"></span>
+                                    </label>
+                                    <div class="clip-radio radio-primary">
+                                        <input type="radio" id="wd-customer" name="person_type" value="CUSTOMER" ng-model="rowModel.person_type" required>
+                                        <label for="wd-customer">
+                                            Customer
+                                        </label>
+                                        <input type="radio" id="wd-provider" name="person_type" value="PROVIDER" ng-model="rowModel.person_type" required>
+                                        <label for="wd-provider">
+                                            Provider
+                                        </label>
+                                    </div>
+                                    <span class="error text-small block" ng-if="Row.person_type.$dirty && Row.person_type.$error.required">Person type is required.</span>
+                                    <!--<span class="success text-small block" ng-if="Row.person_type.$valid && form.person_type == 'male'">Thank You, Mr. {{form.address}}!</span>-->
+                                    <!--<span class="success text-small block" ng-if="Row.person_type.$valid && form.person_type == 'female'">Thank You, Mrs. {{form.address}}!</span>-->
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Created At 
+                                    </label>
+                                    <input ng-init="rowModel.created_at = rowModel.created_at === null ? today : rowModel.created_at;" readonly type="datetime" placeholder="Created Date" class="form-control" name="created_at" ng-model="rowModel.created_at"/>                                    
+                                </div>
+                            </fieldset>
+                            <div class="form-group">
+                                <a class="btn btn-wide btn-success" href="#" ng-click="saveAction()"><i class="fa fa-times fa fa-save"></i></a>
+                                <a class="btn btn-wide btn-red" href="#" ng-click="cancelAction()"><i class="fa fa-times fa fa-white"></i></a>
                             </div>
-                            <span class="error text-small block" ng-if="Form.gender.$dirty && Form.gender.$error.required">Gender is required.</span>
-                            <!--<span class="success text-small block" ng-if="Form.gender.$valid && form.gender == 'male'">Thank You, Mr. {{form.alias}}!</span>-->
-                            <!--<span class="success text-small block" ng-if="Form.gender.$valid && form.gender == 'female'">Thank You, Mrs. {{form.alias}}!</span>-->
                         </div>
-                        <div class="form-group" ng-class="{'has-error':Form.password.$dirty && Form.password.$invalid, 'has-success':Form.password.$valid}">
-                            <label class="control-label">
-                                Password <span class="symbol required"></span>
-                            </label>
-                            <input type="password" placeholder="Enter a Password" class="form-control" name="password" ng-model="rowModel.password" required/>
-                            <span class="error text-small block" ng-if="Form.password.$dirty && Form.password.$error.required">Password is required.</span>
-                            <span class="success text-small block" ng-if="Form.password.$valid">Ok!</span>
-                        </div>
-                        <div class="form-group" ng-class="{'has-error':Form.password2.$dirty && Form.password2.$error.compareTo || Form.password2.$dirty && Form.password2.$invalid, 'has-success':Form.password2.$valid}">
-                            <label class="control-label">
-                                Repeat Password <span class="symbol required"></span>
-                            </label>
-                            <input type="password" placeholder="Repeat Password" class="form-control" name="password2" ng-model="rowModel.password2" compare-to="rowModel.password" required/>
-                            <span class="error text-small block" ng-if="Form.password2.$dirty && Form.password2.$error.required">Repeat password is required!</span>
-                            <span class="error text-small block" ng-if="Form.password2.$dirty && Form.password2.$error.compareTo">Passwords do not match!</span>
-                            <span class="success text-small block" ng-if="Form.password2.$valid">Passwords match!</span>
-                        </div>
-                        <div class="form-group" ng-class="{'has-error':Form.country.$dirty && Form.country.$invalid, 'has-success':Form.country.$valid}">
-                            <label for="form-field-select-1">
-                                Choose your country or region <span class="symbol required"></span>
-                            </label>
-                            <select class="form-control" name="country" ng-model="rowModel.country" required>
-                                <option value="">&nbsp;</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
-                            <span class="error text-small block" ng-if="Form.country.$dirty && Form.country.$error.required">Country is required.</span>
-                            <span class="success text-small block" ng-if="Form.country.$valid">Lovely place!</span>
-                        </div>
-                        <div class="form-group" ng-class="{'has-error': Form.acceptTerms.$dirty && Form.acceptTerms.$invalid, 'has-success':Form.acceptTerms.$valid}">
-                            <label class="control-label">
-                                Consent and Acknowledgement <span class="symbol required"></span>
-                            </label>
-                            <div class="checkbox">
-                                <label class="clip-check">
-                                    <input type="checkbox" value="" name="acceptTerms" ng-model="rowModel.acceptTerms" required="">
-                                    <i></i>
-                                    I read and accept the terms and conditions
-                                </label>
-                            </div>
-                            <span class="error text-small block" ng-if="Form.acceptTerms.$dirty && Form.acceptTerms.$error.required">You must accept terms and conditions!</span>
-                            <span class="success text-small block" ng-if="Form.acceptTerms.$valid">Thank You!</span>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            Only Error Message
-                        </legend>
-                        <div class="form-group" ng-class="{'has-error':Form.url.$dirty && Form.url.$invalid, 'has-success':Form.url.$valid}">
-                            <label class="control-label">
-                                Url <span class="symbol required"></span>
-                            </label>
-                            <input type="text" placeholder="Url" class="form-control" name="url" ng-model="rowModel.url" ng-pattern="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/" required/>
-                            <span class="error text-small block" ng-if="Form.url.$dirty && Form.url.$error.required">Url is required!</span>
-                            <span class="error text-small block" ng-if="Form.url.$error.pattern">Not Valid Url!</span>
-                        </div>
-                    </fieldset>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-    <!-- form ends -->
-    <div class="container-fluid container-fullw bg-white">
-        <div class="row">
+        <!-- form ends -->
+
+        <div ng-show="!showForm" class="row">
             <div class="col-md-12">                
                 <div>
                     <a class="btn btn-wide btn-primary" href="#" ng-click="newAction()" ><i class="fa fa-plus"></i> Nuevo</a>
@@ -187,12 +105,13 @@
 
                     <table ng-table="tableParams" class="table table-bordered table-striped table-hover">
                         <tr ng-repeat="row in $data">
-                            <td data-title="'Name'">{{row.name}}</td>
-                            <td data-title="'Alias'">{{row.alias}}</td>
-                            <td data-title="'Publisher'">{{row.publisher}}</td>
-                            <td data-title="'Gender'">{{row.gender}}</td>
+                            <td data-title="'Full Name'">{{row.full_name}}</td>
+                            <td data-title="'Address'">{{row.address}}</td>
+                            <td data-title="'Home Phone'">{{row.home_phone}}</td>
+                            <td data-title="'Cell Phone'">{{row.home_phone}}</td>
+                            <td data-title="'Person Type'">{{row.person_type}}</td>
                             <td data-title="'Actions'"><div class="visible-md visible-lg hidden-sm hidden-xs">
-                                    <a href="#" ng-click="editAction(row.id)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                    <a href="#" ng-click="editAction(row)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
                                     <!--<a href="#" ng-click="doEdit(row.$id)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Share"><i class="fa fa-share"></i></a>-->
                                     <a href="#" ng-click="delAction(row.id)"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
                                 </div></td>

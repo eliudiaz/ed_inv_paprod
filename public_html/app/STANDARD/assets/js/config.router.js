@@ -36,18 +36,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         }).state('app.maintenance', {
             url: "/maintenance",
             templateUrl: "assets/views/inv_app_maint_view.html",
-            resolve: loadSequence('ngTable', 'maintCtrl'),
+            resolve: loadSequence('edModel', 'ngTable', 'maintCtrl'),
             title: 'Mantenimiento',
             ncyBreadcrumb: {
                 label: 'Mantenimiento-Base'
-            }
-        }).state('app.demo', {
-            url: "/demo",
-            templateUrl: "assets/views/demo_menu.html",
-            resolve: loadSequence('remoteDao', 'demoCtrl'),
-            title: 'Demo',
-            ncyBreadcrumb: {
-                label: 'Verificacion biografica/biometrica'
             }
         }).state('app.dashboard', {
             url: "/dashboard",

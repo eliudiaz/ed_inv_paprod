@@ -4,134 +4,78 @@
  * and open the template in the editor.
  */
 'use strict';
-var data = [{
-        id: 1,
-        name: "Batman",
-        alias: "Bruce Wayne",
-        publisher: "DC Comics",
-        gender: "male",
-        power: 37
-    }, {
-        id: 2,
-        name: "Superman",
-        alias: "Clark Kent",
-        publisher: "DC Comics",
-        gender: "male",
-        power: 94
-    }, {
-        id: 3,
-        name: "Catwoman",
-        alias: "Selina Kyle",
-        publisher: "DC Comics",
-        gender: "female",
-        power: 24
-    }, {
-        id: 4,
-        name: "Spider-Man",
-        alias: "Peter Benjamin Parker",
-        publisher: "Marvel Comics",
-        gender: "male",
-        power: 58
-    }, {
-        id: 5,
-        name: "Banshee",
-        alias: "Sean Cassidy",
-        publisher: "Marvel Comics",
-        gender: "male",
-        power: 60
-    }, {
-        id: 6,
-        name: "Black Mamba",
-        alias: "Tanya Sealy",
-        publisher: "Marvel Comics",
-        gender: "female",
-        power: 78
-    }, {
-        id: 7,
-        name: "Batgirl",
-        alias: "Mary Elizabeth Kane",
-        publisher: "DC Comics",
-        gender: "female",
-        power: 12
-    }, {
-        id: 8,
-        name: "Blade",
-        alias: "Eric Brooks",
-        publisher: "Marvel Comics",
-        gender: "male",
-        power: 33
-    }, {
-        id: 9,
-        name: "Captain America",
-        alias: "Steven Grant Rogers",
-        publisher: "Marvel Comics",
-        gender: "male",
-        power: 46
-    }, {
-        id: 10,
-        name: "Lex Luthor",
-        alias: "Alexander 'Lex' Joseph Luthor",
-        publisher: "DC Comics",
-        gender: "male",
-        power: 10
-    }, {
-        id: 11,
-        name: "Marvel Girl",
-        alias: "Rachel Anne Summers",
-        publisher: "Marvel Comics",
-        gender: "female",
-        power: 95
-    }, {
-        id: 12,
-        name: "Penguin",
-        alias: "Oswald Chesterfield Cobblepot",
-        publisher: "DC Comics",
-        gender: "male",
-        power: 30
-    }, {
-        id: 13,
-        name: "Rogue",
-        alias: "Anna Marie",
-        publisher: "Marvel Comics",
-        gender: "female",
-        power: 80
-    }];
-app.controller('maintCtrl', ["$scope", "ngTableParams", function ($scope, ngTableParams) {
+app.controller('maintCtrl', ["$scope", "ngTableParams", "em", function ($scope, ngTableParams, em) {
+        $scope.today = new Date();
+        $scope.showForm = false;
+        $scope.saveMode = 1; // modes: 1(save)|2(update) 
+        $scope.rowModel = {};
+        em.setE("persons");
+        $scope.rData = em.getAll();
+        $scope.data = $scope.rData;
         $scope.tableParams = new ngTableParams({
             page: 1,
             count: 10
         }, {
-            total: data.length,
+            total: $scope.rData.length,
             getData: function ($defer, params) {
-                $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                $defer.resolve($scope.rData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }
         });
         $scope.delAction = function (id) {
-            for (var i = 0; i < data.length - 1; i++) {
-                if (data[i].id === id) {
-                    data.splice(i, 1);
+            for (var i = 0; i < $scope.data.length - 1; i++) {
+                if ($scope.data[i].id === id) {
+                    $scope.data.splice(i, 1);
                 }
             }
+            $scope.tableParams.reload();
         };
+        /**
+         * 
+         * @param {type} row
+         * @returns {undefined}
+         */
         $scope.editAction = function (row) {
             if (row !== null) {
                 $scope.showRowDetail(row);
+                $scope.saveMode = 2;
             }
             // TODO: show wrong param alert!
         };
+        /**
+         * 
+         * @returns {undefined}
+         */
         $scope.newAction = function () {
             $scope.showRowDetail(null);
+            $scope.saveMode = 1;
+        };
+        $scope.saveAction = function () {
+            switch ($scope.saveMode) {
+                case 1:
+                    $scope.rowModel.created_at = "0000-00-00 00:00:00";
+                    em.post($scope.rowModel);
+                    break;
+                case 2:
+                    em.put($scope.rowModel);
+                    break;
+            }
+        };
+        $scope.cancelAction = function () {
+            $scope.showForm = false;
+            $scope.rowModel = {};
         };
         /**
          * 
          * @param {type} row element
          * @returns {undefined}
          */
-        $scope.showRowDetail = function (element) {
-            if (element === null) {
-                element = {};
+        $scope.showRowDetail = function (e) {
+            $scope.rowModel = e;
+            if (e === null) {
+                $scope.rowModel = {};
             }
-            $scope.showRowDetailView(element);
+
+            $scope.showRowDetailView($scope.rowModel);
         };
         /**
          * 
@@ -139,6 +83,6 @@ app.controller('maintCtrl', ["$scope", "ngTableParams", function ($scope, ngTabl
          * @returns nothing
          */
         $scope.showRowDetailView = function (el) {
-
+            $scope.showForm = true;
         };
     }]);

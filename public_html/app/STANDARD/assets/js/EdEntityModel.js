@@ -1,4 +1,3 @@
-
 /*****************************************************************************\
  author: edcracken
  options
@@ -9,15 +8,15 @@
  is used.  If you use anything but json|jsonp|application/json
  make sure your data is already encoded properly as a string
  
- Loader.get(uri, options, callback)
+ Loader.get(uri, options, callback) - find all and filtering
  
- Loader.post(uri, options, callback)
+ Loader.post(uri, options, callback) - create
  
- Loader.put(uri, options, callback)
+ Loader.put(uri, options, callback) - update
  
- Loader.patch(uri, options, callback)
+ Loader.patch(uri, options, callback) 
  
- Loader.delete(uri, options, callback)
+ Loader.delete(uri, options, callback) - delete
  
  \*****************************************************************************/
 ({define: typeof define !== "undefined" ? define : function (deps, factory) {
@@ -106,8 +105,9 @@
                     options.uri = options.uri || {};
                     callHash = resourceURI + JSON.stringify(options.uri) + JSON.stringify(options.data);
                     if (!addCallback(callHash, callback)) {
-                        options.uri.ts = new Date();
+//                        options.uri.ts = new Date();
                         url += ((url || '').indexOf('?') === -1 ? '?' : '&') + encodeParams(options.uri);
+                        url = url.indexOf('?') === url.length - 1 ? url.substring(0, url.length - 2) : url;
                         requestObject = new RemoteRequest();
                         requestObject.onreadystatechange = function () {
                             if (requestObject.readyState === 4) {
@@ -154,7 +154,6 @@
                                 } catch (e) {
                                     body = options.body;
                                 }
-                                ;
                             }
                             if (options.headers) {
                                 (function () {
@@ -170,13 +169,13 @@
                             try {
                                 requestObject.send(body);
                             } catch (e) {
-                                callCallbacks(callHash, {message:'Error de comunicacion!'});
+                                callCallbacks(callHash, {message: 'Error de comunicacion!'});
                             }
                         } else {
                             try {
                                 requestObject.send(null);
                             } catch (e) {
-                                callCallbacks(callHash, {message:'Error de comunicacion!'});
+                                callCallbacks(callHash, {message: 'Error de comunicacion!'});
                             }
                         }
                     }
@@ -241,64 +240,70 @@
         });
 
 /* 
- * author: edcracken
+ author: edcracken
+ options
+ uri: {}      - key value paris of data to send in url/get/uri
+ data: {}||'' - Object or string to be sent as JSON data in the body
+ for methods that support body data
+ dataType: '' - Data type that is being sent, by default application/json
+ is used.  If you use anything but json|jsonp|application/json
+ make sure your data is already encoded properly as a string
+ 
+ em.get(entity, options, callback) - find all and filtering
+ 
+ em.post(entity, options, callback) - create
+ 
+ em.put(entity, options, callback) - update
+ 
+ em.delete(entity, options, callback) - delete
+ 
  */
-console.info("cargando EdNativeRest.js");
-var modelPuEntitiesUrl = "http://localhost:8080/Renap_Fwk_Inventarios_JPA-API/persistence/API_PU/entity";
-var modelPuQuerisUrl = "http://localhost:8080/Renap_Fwk_Inventarios_JPA-API/persistence/API_PU/query";
+var serverUrl = "http://localhost:81/pa/";
+var edModel = angular.module('edModel', []);
 
-var remoteDao = angular.module('remoteDao', []);
-
-//abstract class
-remoteDao.factory('Crud', [
+edModel.factory('em', [
     function () {
-        var vigil = this;
+        var me = this;
+        this.entity = null;
         this.response = null;
 
-        this.get = function (entity, id) {
-            window.Loader.get(modelPuEntitiesUrl + '/' + entity + '/' + id, null, function (r) {
-                vigil.response = r;
-            });
-            return vigil.response;
+        this.setE = function (entity) {
+            me.entity = entity;
         };
-        this.put = function (entity, req) {
-            window.Loader.put(modelPuEntitiesUrl + '/' + entity, {data: req, dataType: window.Loader.dataTypes.json}, function (r) {
-                vigil.response = r;
-            });
-            return vigil.response;
+        this.getAll = function () {
+            return me.get(me.entity, null);
         };
-        this.post = function (entity, req) {
-            window.Loader.post(modelPuEntitiesUrl + '/' + entity, {data: req, dataType: window.Loader.dataTypes.json}, function (r) {
-                vigil.response = r;
+        this.get = function (id) {
+            var path = serverUrl + me.entity;
+            if (id !== null) {
+                path = path + "/" + id;
+            }
+            window.Loader.get(path, null, function (e, r) {
+                me.response = r;
             });
-            return vigil.response;
+            return me.response;
         };
-        this.delete = function (entity, id) {
-            window.Loader.delete(modelPuEntitiesUrl + '/' + entity + '/' + id, null, function (r) {
-                vigil.response = r;
+        this.put = function (id, req) {
+            var path = serverUrl + me.entity;
+            if (id !== null) {
+                path = path + "/" + id;
+            }
+            window.Loader.put(path, {data: req, dataType: window.Loader.dataTypes.json}, function (e, r) {
+                me.response = r;
             });
-            return vigil.response;
+            return me.response;
         };
-        return {get: this.get, put: this.put, post: this.post, delte: this.delete}
+        this.post = function (req) {
+            window.Loader.post(serverUrl + me.entity, {data: req, dataType: window.Loader.dataTypes.json}, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
+        this.delete = function (id) {
+            window.Loader.delete(serverUrl + me.entity + '/' + id, null, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
+        return {get: me.get, getAll: me.getAll, put: me.put, post: me.post, delte: me.delete, setE: me.setE};
     }]);
-
-remoteDao.factory('Query', [function () {
-        this.response = null;
-        var vigil = this;
-
-        this.get = function (url, callback) {
-            window.Loader.get(url, null, function (e, r) {
-                vigil.response = r;
-                console.info("+" + JSON.stringify(vigil.response));
-                if (callback) {
-                    callback(r, e);
-                }
-            });
-            console.info("-" + JSON.stringify(vigil.response));
-            return vigil.response;
-        };
-
-
-        return {get: this.get}
-    }]);
-

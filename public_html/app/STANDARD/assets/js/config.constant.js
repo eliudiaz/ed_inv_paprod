@@ -59,8 +59,8 @@ app.constant('JS_REQUIRES', {
     },
     //*** angularJS Modules
     modules: [{
-            name: 'remoteDao',
-            files: ['assets/js/EdNativeRest.js']
+            name: 'edModel',
+            files: ['assets/js/EdEntityModel.js']
         },{
             name: 'angularMoment',
             files: ['../bower_components/angular-moment/angular-moment.min.js']
