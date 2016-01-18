@@ -6,7 +6,7 @@
  * controllers that generate the list of icons (Fontawesome and Themify)
  */
 app.controller('fo_viewdatasetCtrl', ["$scope", "eReq","$stateParams", function ($scope, eReq,$stateParams) {
-        var reqContent = eReq.getInstance("http://localhost:5000/v1/opendata");
+        var reqContent = eReq.getInstance("http://181.209.238.78:5000/v1/opendata");
         var jsonData = reqContent.get("/content/entities/"+$stateParams.serie);
         function setPivotReport() {
             var report = {
