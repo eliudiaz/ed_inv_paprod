@@ -52,7 +52,7 @@ function ($translateProvider) {
 
     // Since you've now registered more then one translation table, angular-translate has to know which one to use.
     // This is where preferredLanguage(langKey) comes in.
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('es_ES');
 
     // Store the language in the local storage
     $translateProvider.useLocalStorage();

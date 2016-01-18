@@ -27,6 +27,8 @@
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<!-- Clip-Two Theme -->
 		<link rel="stylesheet" data-ng-href="assets/css/themes/{{ app.layout.theme }}.css" />
+                <!-- Monster libs-->
+                <script src="flexmonster/flexmonster.js" type="text/javascript"></script>
 	</head>
 	<body ng-controller="AppCtrl">
 		<div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>

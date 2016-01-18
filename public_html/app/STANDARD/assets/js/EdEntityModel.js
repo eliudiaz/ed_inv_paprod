@@ -107,7 +107,7 @@
                     if (!addCallback(callHash, callback)) {
 //                        options.uri.ts = new Date();
                         url += ((url || '').indexOf('?') === -1 ? '?' : '&') + encodeParams(options.uri);
-                        url = url.indexOf('?') === url.length - 1 ? url.substring(0, url.length - 2) : url;
+//                        url = url.indexOf('?') === url.length - 1 ? url.substring(0, url.length - 2) : url;
                         requestObject = new RemoteRequest();
                         requestObject.onreadystatechange = function () {
                             if (requestObject.readyState === 4) {
@@ -259,9 +259,36 @@
  
  */
 var serverUrl = "http://localhost:81/pa/";
-var edModel = angular.module('edModel', []);
+var edOps = angular.module('edOps', []);
+edOps.factory('eReq', [function () {
+        var me = this;
+        var path;
+        this.getInstance = function (urlContext) {
+            path = urlContext;
+            return me;
+        };
+        this.get = function (reqParams) {
+            window.Loader.get(path + (reqParams !== null ? reqParams : ""), null, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
+        this.put = function (reqParams, data) {
+            window.Loader.post(path + (reqParams !== null ? reqParams : ""), {data: data, dataType: window.Loader.dataTypes.json}, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
 
-edModel.factory('em', [
+        this.post = function (reqParams, data) {
+            window.Loader.post(path + (reqParams !== null ? reqParams : ""), {data: data, dataType: window.Loader.dataTypes.json}, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
+        return {getInstance: me.getInstance};
+    }]);
+edOps.factory('eModel', [
     function () {
         var me = this;
         this.entity = null;

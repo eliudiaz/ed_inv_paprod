@@ -27,7 +27,6 @@ app.constant('JS_REQUIRES', {
         'touchspin-plugin': ['../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js', '../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
         //*** Controllers
         'dashboardCtrl': 'assets/js/controllers/dashboardCtrl.js',
-        'demoCtrl': 'assets/js/controllers/demoCtrl.js',
         'iconsCtrl': 'assets/js/controllers/iconsCtrl.js',
         'vAccordionCtrl': 'assets/js/controllers/vAccordionCtrl.js',
         'ckeditorCtrl': 'assets/js/controllers/ckeditorCtrl.js',
@@ -43,9 +42,6 @@ app.constant('JS_REQUIRES', {
         'nestableCtrl': 'assets/js/controllers/nestableCtrl.js',
         'validationCtrl': ['assets/js/controllers/validationCtrl.js'],
         'userCtrl': ['assets/js/controllers/userCtrl.js'],
-        'userCtrl2': ['assets/js/controllers/userCtrl2.js'],
-        'personaCtrl': ['assets/js/controllers/personaCtrl.js'],
-        'maintCtrl': ['assets/js/controllers/maintCtrl.js'],
         'selectCtrl': 'assets/js/controllers/selectCtrl.js',
         'wizardCtrl': 'assets/js/controllers/wizardCtrl.js',
         'uploadCtrl': 'assets/js/controllers/uploadCtrl.js',
@@ -53,15 +49,20 @@ app.constant('JS_REQUIRES', {
         'inboxCtrl': 'assets/js/controllers/inboxCtrl.js',
         'xeditableCtrl': 'assets/js/controllers/xeditableCtrl.js',
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
-        'byronCtrl':'assets/js/controllers/byronCtrl.js',
+        // *** open data controllers
+        'bo_datacategoryCtrl': 'assets/js/controllers/bo_datacategoryCtrl.js',
+        'bo_datasetCtrl': 'assets/js/controllers/bo_datasetCtrl.js',
+        'bo_importdataCtrl': 'assets/js/controllers/bo_importdataCtrl.js',
+        'fo_datasetsdashboardCtrl': 'assets/js/controllers/fo_datasetsdashboardCtrl.js',
+        'fo_viewdatasetCtrl': 'assets/js/controllers/fo_viewdatasetCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'
     },
     //*** angularJS Modules
     modules: [{
-            name: 'edModel',
+            name: 'edOps',
             files: ['assets/js/EdEntityModel.js']
-        },{
+        }, {
             name: 'angularMoment',
             files: ['../bower_components/angular-moment/angular-moment.min.js']
         }, {
@@ -130,9 +131,5 @@ app.constant('JS_REQUIRES', {
         }, {
             name: 'checklist-model',
             files: ['../bower_components/checklist-model/checklist-model.js']
-        },
-        {
-            name: 'ngResource',
-            files: ['../bower_components/angular-resource/angular-resource.min.js']
         }]
 });
