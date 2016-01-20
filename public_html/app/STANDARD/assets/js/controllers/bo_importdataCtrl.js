@@ -4,12 +4,8 @@
  */
 app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq', 'ngTableParams',
     function ($scope, toaster, FileUploader, eReq, ngTableParams) {
-<<<<<<< HEAD
-        $scope.reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
-=======
         $scope.reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
 //        $scope.reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
->>>>>>> 0031e2d6e40403f565c4afcd2be2c670de371da6
         $scope.series = $scope.reqConfig.get("/series");
         $scope.currentStep = 1;
         $scope.myModel = {rowsFile: [], columnsFile: [], serie: {}};
@@ -91,13 +87,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
 
         //uploader
         var uploader = $scope.uploader = new FileUploader({name: "file",
-            url: 'http://localhost:5002/v1/opendata/files'
-<<<<<<< HEAD
-=======
-//            url: 'http://181.209.238.78:5002/v1/opendata/files'
->>>>>>> 0031e2d6e40403f565c4afcd2be2c670de371da6
-        });
-
+            url: 'http://localhost:5002/v1/opendata/files' });
 
         //table
         $scope.fileData = [];

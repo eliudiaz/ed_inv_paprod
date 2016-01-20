@@ -16,6 +16,7 @@
         <section class="box">
 
             <div class="container-fluid container-fullw bg-white">
+
                 <div class="panel panel-white">
                     <div class="panel-heading">
                         <h5 class="panel-title">Nueva Serie de Datos</h5>
@@ -69,7 +70,7 @@
                                             </th>                                            
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="r in nSerie.fields">
+                                        <tr ng-repeat="r in nSerie.fiels">
                                             <td>
                                                 {{r.columnName}}
                                             </td>
@@ -85,8 +86,7 @@
                             Guardar
                         </button>
                     </div>
-                </div> 
-
+                </div>
                 <div class="panel panel-white no-radius">
                     <div class="panel-heading border-light">
                         <h4 class="no-margin inline-block padding-5">Datasets<span class="block text-small text-left">Listado de Datasets</span></h4>
@@ -119,6 +119,11 @@
                                                 </a>
                                             </div>
                                         </td>
+                                        <td data-title="'Actions'"><div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                <a href="#" ng-click="editAction(dataset)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                <!--<a href="#" ng-click="doEdit(row.$id)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Share"><i class="fa fa-share"></i></a>-->
+                                                <a href="#" ng-click="delAction(dataset.id)"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                            </div></td>
                                     </tr>
                                 </tbody>
                             </table>

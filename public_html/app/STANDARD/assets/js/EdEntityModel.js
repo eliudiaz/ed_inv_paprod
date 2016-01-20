@@ -274,7 +274,7 @@ edOps.factory('eReq', [function () {
             return me.response;
         };
         this.put = function (reqParams, data) {
-            window.Loader.post(path + (reqParams !== null ? reqParams : ""), {data: data, dataType: window.Loader.dataTypes.json}, function (e, r) {
+            window.Loader.put(path + (reqParams !== null ? reqParams : ""), {data: data, dataType: window.Loader.dataTypes.json}, function (e, r) {
                 me.response = r;
             });
             return me.response;

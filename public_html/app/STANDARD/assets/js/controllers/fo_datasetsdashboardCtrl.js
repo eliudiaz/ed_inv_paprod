@@ -10,20 +10,16 @@ app.controller('SparklineCtrl', ["$scope", function ($scope) {
         $scope.referrals = [4879, 6567, 5022, 5890, 9234, 7128, 4811];
     }]);
 
-<<<<<<< HEAD
 app.controller('ngTabledatasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
-//    var reqConfig=eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
+//        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
         var reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
         var series = reqConfig.get("/series");
-=======
-app.controller('ngTabledatasetsCtrl', ["eReq","$scope", "$filter", "ngTableParams", function (eReq,$scope, $filter, ngTableParams) {
-    var reqConfig=eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
-//    var reqConfig=eReq.getInstance("http://localhost:5002/v1/opendata");
-    var series=reqConfig.get("/series");
-    
->>>>>>> 0031e2d6e40403f565c4afcd2be2c670de371da6
+        $scope.editMode = false;
 
-
+        $scope.editAction = function (serie) {
+            $scope.nSerie = serie;
+            $scope.editMode = true;
+        };
         $scope.tableParams = new ngTableParams({
             page: 1, // show first page
             count: 5 // count per page
@@ -35,17 +31,22 @@ app.controller('ngTabledatasetsCtrl', ["eReq","$scope", "$filter", "ngTableParam
             }
         });
 
-        $scope.nSerie = {name: "", description: "", fields: []};
+        $scope.nSerie = {name: "", description: "", fiels: []};
         $scope.nCampo = {columnName: "", columndType: "text"};
         $scope.addCampo = function () {
-            $scope.nSerie.fields.push($scope.nCampo);
+            $scope.nSerie.fiels.push($scope.nCampo);
             $scope.nCampo = {columnName: "", columndType: "text"};
         };
 
         $scope.saveSerie = function () {
-            reqConfig.post("/series", $scope.nSerie);
-            $scope.nSerie = {name: "", description: "", fields: []};
+            if ($scope.editMode) {
+                reqConfig.post("/series/upd/" + $scope.nSerie.id, $scope.nSerie);
+            } else {
+                reqConfig.post("/series", $scope.nSerie);
+            }
+            $scope.nSerie = {name: "", description: "", fiels: []};
             series = reqConfig.get("/series");
+            $scope.editMode = false;
         };
 
         $scope.editId = -1;
