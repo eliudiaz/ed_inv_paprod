@@ -10,10 +10,18 @@ app.controller('SparklineCtrl', ["$scope", function ($scope) {
         $scope.referrals = [4879, 6567, 5022, 5890, 9234, 7128, 4811];
     }]);
 
+<<<<<<< HEAD
 app.controller('ngTabledatasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
 //    var reqConfig=eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
         var reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
         var series = reqConfig.get("/series");
+=======
+app.controller('ngTabledatasetsCtrl', ["eReq","$scope", "$filter", "ngTableParams", function (eReq,$scope, $filter, ngTableParams) {
+    var reqConfig=eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
+//    var reqConfig=eReq.getInstance("http://localhost:5002/v1/opendata");
+    var series=reqConfig.get("/series");
+    
+>>>>>>> 0031e2d6e40403f565c4afcd2be2c670de371da6
 
 
         $scope.tableParams = new ngTableParams({
