@@ -58,8 +58,15 @@
       },
       "frontoffice":{       
         "MAIN": "FrontOffice",
-        "dashboard": "Series de Datos",
-        "dataloader": "Carga de Datos"
+        "dashboard": "Series de Datos"
+      },
+      "backoffice":{       
+        "MAIN": "BackOffice",
+        "datasets": "Cubos de datos",
+        "categories": "Categorias",
+        "organizations": "Organizaciones",
+        "clients": "Clientes",
+        "imports":"Carga de Datos"
       },
       "element": {
       	"MAIN": "Elementos UI ",

@@ -33,43 +33,37 @@
             </div>
         </a>
     </li>
-<!--    
-      "backoffice":{       
-        "MAIN": "BackOffice",
-        "FORM01": "Categoria de datos",
-        "FORM02": "Set de datos",
-        "FORM03": "Importar Datos"
-      }
-<li>
-        <a href="javascript:void(0)">
-            <div class="item-content">
-                <div class="item-media">
-                    <i class="ti-settings"></i>
+    <!-- 
+    <li>
+            <a href="javascript:void(0)">
+                <div class="item-content">
+                    <div class="item-media">
+                        <i class="ti-settings"></i>
+                    </div>
+                    <div class="item-inner">
+                        <span class="title" translate="sidebar.nav.backoffice.MAIN"> Backoffice </span><i class="icon-arrow"></i>
+                    </div>
                 </div>
-                <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.backoffice.MAIN"> Backoffice </span><i class="icon-arrow"></i>
-                </div>
-            </div>
-        </a>
-        <ul class="sub-menu">
-            <li ui-sref-active="active">
-                <a ui-sref="app.backoffice.form01">
-                    <span class="title" translate="sidebar.nav.backoffice.FORM01"> Elements </span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.backoffice.form02">
-                    <span class="title" translate="sidebar.nav.backoffice.FORM02"> Buttons </span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="app.backoffice.form03">
-                    <span class="title" translate="sidebar.nav.backoffice.FORM03"> Buttons </span>
-                </a>
-            </li>
-
-        </ul>
-    </li>-->
+            </a>
+            <ul class="sub-menu">
+                <li ui-sref-active="active">
+                    <a ui-sref="app.backoffice.form01">
+                        <span class="title" translate="sidebar.nav.backoffice.FORM01"> Elements </span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.backoffice.form02">
+                        <span class="title" translate="sidebar.nav.backoffice.FORM02"> Buttons </span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.backoffice.form03">
+                        <span class="title" translate="sidebar.nav.backoffice.FORM03"> Buttons </span>
+                    </a>
+                </li>
+    
+            </ul>
+        </li>-->    
     <li>
         <a href="javascript:void(0)">
             <div class="item-content">
@@ -77,19 +71,34 @@
                     <i class="ti-settings"></i>
                 </div>
                 <div class="item-inner">
-                    <span class="title" translate="sidebar.nav.frontoffice.MAIN"> Area Publica </span><i class="icon-arrow"></i>
+                    <span class="title" translate="sidebar.nav.backoffice.MAIN"> Area Privada </span><i class="icon-arrow"></i>
                 </div>
             </div>
         </a>
         <ul class="sub-menu">
             <li ui-sref-active="active">
-                <a ui-sref="app.dashboard">
-                    <span class="title" translate="sidebar.nav.frontoffice.dashboard"> Dashboard </span>
+                <a ui-sref="app.backoffice.datasets">
+                    <span class="title" translate="sidebar.nav.backoffice.datasets"> Admon. DataSets </span>
                 </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="app.backoffice.dataloader">
-                    <span class="title" translate="sidebar.nav.frontoffice.dataloader"> Visor Datasets </span>
+                <a ui-sref="app.backoffice.imports">
+                    <span class="title" translate="sidebar.nav.backoffice.imports"> Carga de Datos</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.backoffice.categories">
+                    <span class="title" translate="sidebar.nav.backoffice.categories"> Admon. Categorias</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.backoffice.organizations">
+                    <span class="title" translate="sidebar.nav.backoffice.organizations"> Admon. Organizations</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.backoffice.clients">
+                    <span class="title" translate="sidebar.nav.backoffice.clients"> Admon. Clientes</span>
                 </a>
             </li>
         </ul>
