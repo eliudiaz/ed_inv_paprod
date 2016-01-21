@@ -11,8 +11,8 @@ app.controller('SparklineCtrl', ["$scope", function ($scope) {
     }]);
 
 app.controller('ngTabledatasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
-//        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
-        var reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
+        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
+//        var reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
         var series = reqConfig.get("/series");
         $scope.editMode = false;
 
