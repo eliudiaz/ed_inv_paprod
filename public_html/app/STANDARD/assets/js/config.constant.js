@@ -50,7 +50,9 @@ app.constant('JS_REQUIRES', {
         'xeditableCtrl': 'assets/js/controllers/xeditableCtrl.js',
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
         // *** open data controllers
-        'bo_datacategoryCtrl': 'assets/js/controllers/bo_datacategoryCtrl.js',
+        'bo_clientsCtrl': 'assets/js/controllers/bo_clientsCtrl.js',
+        'bo_orgsCtrl': 'assets/js/controllers/bo_orgsCtrl.js',
+        'bo_categoriesCtrl': 'assets/js/controllers/bo_categoriesCtrl.js',
         'bo_datasetsCtrl': 'assets/js/controllers/bo_datasetsCtrl.js',
         'bo_importdataCtrl': 'assets/js/controllers/bo_importdataCtrl.js',
         'fo_datasetsdashboardCtrl': 'assets/js/controllers/fo_datasetsdashboardCtrl.js',

@@ -35,13 +35,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             resolve: loadSequence('modernizr', 'moment', 'angularMoment', 'uiSwitch', 'perfect-scrollbar-plugin', 'toaster', 'ngAside', 'vAccordion', 'sweet-alert', 'chartjs', 'tc.chartjs', 'oitozero.ngSweetAlert', 'chatCtrl'),
             abstract: true
         }).state('app.dashboard', {
-                    url: "/dashboard",
-                    templateUrl: "assets/views/frontoffice_dashboard.html",
-                    resolve: loadSequence('edOps', 'jquery-sparkline', 'ngTable', 'fo_datasetsdashboardCtrl'),
-                    title: 'Dashboard',
-                    ncyBreadcrumb: {
-                        label: 'Series de Datos'
-                    }
+            url: "/dashboard",
+            templateUrl: "assets/views/frontoffice_dashboard.html",
+            resolve: loadSequence('edOps', 'jquery-sparkline', 'ngTable', 'fo_datasetsdashboardCtrl'),
+            title: 'Dashboard',
+            ncyBreadcrumb: {
+                label: 'Series de Datos'
+            }
         }).state('app.datasetviewer', {
             url: "/datasetviewer/:serie",
             templateUrl: "assets/views/frontoffice_viewdataset.html",
@@ -52,14 +52,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             },
             resolve: loadSequence('ngTable', 'fo_viewdatasetCtrl')
         })
-        .state('app.backoffice', {
-            url: "/backoffice",
-            template: '<div ui-view class="fade-in-up"></div>',
-            title: 'BackOffice',
-            ncyBreadcrumb: {
-                label: 'BackOffice'
-            }
-        }).state('app.backoffice.datasets', {
+                .state('app.backoffice', {
+                    url: "/backoffice",
+                    template: '<div ui-view class="fade-in-up"></div>',
+                    title: 'BackOffice',
+                    ncyBreadcrumb: {
+                        label: 'BackOffice'
+                    }
+                }).state('app.backoffice.datasets', {
             url: "/datasets",
             templateUrl: "assets/views/backoffice_datasets.html",
             title: 'Set de datos',
@@ -67,34 +67,34 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Set de Datoas'
             },
-            resolve: loadSequence('ngTable','bo_datasetsCtrl')
+            resolve: loadSequence('ngTable', 'bo_datasetsCtrl')
         }).state('app.backoffice.imports', {
-                    url: "/imports",
-                    templateUrl: "assets/views/backoffice_wizard_datos.html",
-                    title: 'Importar Datos',
-                    icon: 'ti-layout-media-left-alt',
-                    ncyBreadcrumb: {
-                        label: 'Cargar Datos'
-                    },
-                    resolve: loadSequence('angularFileUpload', 'ngTable', 'bo_importdataCtrl', 'uploadCtrl')
+            url: "/imports",
+            templateUrl: "assets/views/backoffice_wizard_datos.html",
+            title: 'Importar Datos',
+            icon: 'ti-layout-media-left-alt',
+            ncyBreadcrumb: {
+                label: 'Cargar Datos'
+            },
+            resolve: loadSequence('angularFileUpload', 'ngTable', 'bo_importdataCtrl', 'uploadCtrl')
         }).state('app.backoffice.categories', {
             url: "/categories",
-            templateUrl: "assets/views/backoffice_category.html",
+            templateUrl: "assets/views/backoffice_categories.html",
             title: 'Categorias',
             icon: 'ti-layout-media-left-alt',
             ncyBreadcrumb: {
                 label: 'Categorias'
             },
-            resolve: loadSequence('bo_datasetCtrl')
+            resolve: loadSequence('bo_categoriesCtrl', 'ngTable')
         }).state('app.backoffice.organizations', {
             url: "/organizations",
-            templateUrl: "assets/views/backoffice_createdataset.html",
+            templateUrl: "assets/views/backoffice_organizations.html",
             title: 'Organizaciones',
             icon: 'ti-layout-media-left-alt',
             ncyBreadcrumb: {
                 label: 'Organizaciones'
             },
-            resolve: loadSequence('bo_datasetCtrl')
+            resolve: loadSequence('bo_orgsCtrl', 'ngTable')
         }).state('app.backoffice.clients', {
             url: "/clients",
             templateUrl: "assets/views/backoffice_clients.html",
@@ -103,7 +103,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Clientes'
             },
-            resolve: loadSequence('bo_datasetCtrl')
+            resolve: loadSequence('bo_clientsCtrl', 'ngTable')
         }).state('app.ui', {
             url: '/ui',
             template: '<div ui-view class="fade-in-up"></div>',

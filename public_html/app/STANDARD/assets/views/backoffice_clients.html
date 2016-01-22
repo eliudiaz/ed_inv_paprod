@@ -1,98 +1,81 @@
 <!-- start: DASHBOARD TITLE -->
 <section id="page-title" class="padding-top-15 padding-bottom-15">
     <div class="row">
-        <div class="col-sm-12">
-            <h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">{{ mainTitle}}</h1>
-            <span class="mainDescription">Revisión de Dataset</span>
-            <div ncy-breadcrumb></div>
+        <div class="col-sm-7">
+            <!--<h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">{{ mainTitle }}</h1>-->
+            <h1 class="mainTitle" >Open Data</h1>
+            <span class="mainDescription"> Datos y Estadísticas </span>
         </div>
     </div>
 </section>
 <!-- end: DASHBOARD TITLE -->
-<!-- start: FONTAWESOME ICONS -->
-<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-    <section class="box">
-        <div class="container-fluid container-fullw bg-white">
-            <!-- start: FONTAWESOME ICONS -->
-            <!-- /// controller:  'IconsCtrl' -  localtion: assets/js/controllers/iconsCtrl.js /// -->
-            <div ng-controller="fo_viewdatasetCtrl">
-                <div class="row">
-                    <div id="pivot-container"></div>
+<!-- start: FORM VALIDATION -->
+<br />
+<!-- /// controller:  'CropCtrl' -  localtion: assets/js/controllers/bo_clientsCtrl.js /// -->
+<div class="row" ng-controller="bo_clientsCtrl">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">        
+        <section class="box">
 
-                    <!--                    <div class="col-md-4 col-lg-3">
-                                            <div class="panel panel-white no-radius" id="paneldataset">
-                                                <div class="panel-heading border-light">
-                                                    <h4 class="panel-title"> Series </h4>
-                                                    <input ng-model="search" class="form-control text-center margin-top-15" type="text" placeholder="Buscar {{icons.name}} DataSet...">
-                                                </div>
-                                                <div class="panel-scroll height-500" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
-                                                    <div class="panel-body">
-                                                        <div ng-repeat="icons in icons | filter: { type: 'fontawesome' }">
-                                                            <div class="container-fluid container-fullw bg-white" ng-repeat="sections in icons.sections" ng-if="(sections.icons | filter: search).length">
-                                                                <h5 class="over-title margin-bottom-15">{{sections.title}}</h5>
-                                                                <div class="row the-icons">
-                                                                    <div class="fa-hover" ng-repeat="item in sections.icons | filter: search">
-                                                                        <i class="{{icons.prefix}} {{item}}"></i> {{item}}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>-->
-                    <!--                    <div class="col-md-9 col-lg-9">
-                                            <div class="panel panel-white no-radius" id="panelviewsdataset">
-                                                <div class="panel-heading border-light">
-                                                    <div class="pull-right">
-                                                        <button type="submit" class="btn btn-o btn-primary">
-                                                            Tabla
-                                                        </button>
-                                                        <button type="reset" class="btn btn-o btn-primary btn-success" ng-click="">
-                                                            Gráfica
-                                                        </button>
-                                                        <button type="reset" class="btn btn-o btn-primary btn-info" ng-click="">
-                                                            Mapa
-                                                        </button>
-                                                        <button type="reset" class="btn btn-o btn-primary btn-warning" ng-click="">
-                                                            Metadatos
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div ng-controller="ngTabledatasetsCtrl">
-                                                        <div class="row margin-bottom-10">
-                                                            <div class="form-group">
-                                                                <div class="col-md-2 pull-right">
-                                                                    <p><strong>Registros por pagina:</strong> {{tableParams.count()}}</p>
-                                                                </div>
-                                                                <div class="col-md-1 pull-right">
-                                                                    <p><strong>Pagina:</strong> {{tableParams.page()}}</p>
-                                                                </div>
-                    
-                                                            </div>
-                                                        </div>
-                                                        <div class="panel-scroll height-500" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
-                                                            <table ng-table="tableParams" class="table table-condensed table-hover">
-                                                                <tbody ng-repeat="dataset in $data">
-                                                                <tr id="tr{{user.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                                                    <td class="rowTd" data-title="'No'" sortable="'id'">{{dataset.id}}</td>
-                                                                    <td class="rowTd" data-title="'Nombre dataset'" sortable="'nameDataset'"><span>{{dataset.nameDataset}}</span><span class="text-small block text-light">{{dataset.descDataset}}</span></td>
-                                                                    <td class="rowTd" data-title="'Última actualización'" sortable="'updatedDataset'">{{dataset.updatedDataset}}</td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                    
-                    
-                                                    </div>
-                                                </div>
-                    
-                                        </div>
-                                    </div>-->
+            <div class="container-fluid container-fullw bg-white">
+
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Datos de Cliente</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="nombre">
+                                Nombre:
+                            </label>
+                            <input ng-model="mClient.name" type="text" class="form-control" id="nombre" placeholder="Ingrese nombre (sin espacios)">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">
+                                Descripcion
+                            </label>
+                            <input type="text" ng-model="mClient.description" class="form-control" id="descripcion" placeholder="Ingrese descripcion">
+                        </div>                         
+                        <button type="button" ng-click="saveSerie()" class="btn btn-o btn-primary">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
-                <!-- end: FONTAWESOME ICONS -->
+                <div class="panel panel-white no-radius">
+                    <div class="panel-heading border-light">
+                        <h4 class="no-margin inline-block padding-5">Datasets<span class="block text-small text-left">Listado de Datasets</span></h4>
+                    </div>
+                    <div class="panel-body no-padding">
+
+                        <div >
+                            <div class="row margin-bottom-10">
+                                <div class="form-group">
+                                    <div class="col-md-2 pull-right">
+                                        <p><strong>Registros por pagina:</strong> {{tableParams.count()}}</p>
+                                    </div>
+                                    <div class="col-md-1 pull-right">
+                                        <p><strong>Pagina:</strong> {{tableParams.page()}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <table ng-table="tableParams" class="table table-condensed table-hover">
+                                <tbody ng-repeat="row in data">
+                                    <tr  ng-class-odd="'odd'" ng-class-even="'even'">
+                                        <td class="rowTd" data-title="'No'" sortable="'id'">{{row.id}}</td>
+                                        <td class="rowTd" data-title="'Nombre'" sortable="'nameDataset'"><span>{{row.name}}</span><span class="text-small block text-light">{{row.name}}</span></td>
+                                        <td class="rowTd" data-title="'Descripcion'" sortable="'nameDataset'"><span>{{row.description}}</span><span class="text-small block text-light">{{row.description}}</span></td>
+                                        <td data-title="'Actions'"><div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                <a href="#" ng-click="editAction(row)" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                                                <!--<a href="#" ng-click="doEdit(row.$id)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Share"><i class="fa fa-share"></i></a>-->
+                                                <a href="#" ng-click="delAction(row)"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                            </div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </div>
