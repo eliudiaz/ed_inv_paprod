@@ -10,7 +10,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
 
         $scope.series = $scope.reqConfig.get("/series");
         $scope.currentStep = 1;
-        $scope.myModel = {rowsFile: [], columnsFile: [], serie: {}};
+        $scope.myModel = {rowsFile: [], columnsFile: [], serie:""};
         $scope.working = false;
         // Initial Value
         $scope.form = {
@@ -25,7 +25,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
                     }
                     if ($scope.currentStep === 3) {
                         $scope.working = true;
-                        $scope.reqConfig.post("/series/" + $scope.myModel.serie.id + "/attach/files/" + $scope.myModel.fileName);
+                        $scope.reqConfig.post("/series/" + $scope.serie.id + "/attach/files/" + $scope.myModel.fileName);
                         $scope.working = false;
                     }
                     nextStep();
@@ -94,17 +94,23 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
         //table
         $scope.fileData = [];
         $scope.tableData = [];
+        $scope.serie={};
         $scope.fieldsMapping = function () {
             angular.forEach($scope.fileColumns, function (v, k) {
                 $scope.tableData.push({fCol: v, dsCol: null, dsColType: null});
             });
             var i = 0;
-            $scope.myModel.serie = JSON.parse($scope.myModel.serie);
-            angular.forEach($scope.myModel.serie.fiels, function (v, k) {
+            $scope.serie =$scope.series.filter($scope.getSerie);
+            $scope.serie =$scope.serie[0];
+            angular.forEach($scope.serie.fiels, function (v, k) {
                 $scope.tableData[i].dsCol = v.columnName;
                 $scope.tableData[i].dsColType = v.columndType;
                 i++;
             });
+        };
+        
+        $scope.getSerie=function($serie){            
+            return parseInt($scope.myModel.serie)===$serie.id;
         };
 //        $scope.tableParams = new ngTableParams({
 //            page: 1, // show first page
@@ -124,7 +130,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
                 return this.queue.length < 10;
             }
         });
-
+        
         // CALLBACKS
 
         uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {

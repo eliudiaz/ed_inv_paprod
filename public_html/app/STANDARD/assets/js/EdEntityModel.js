@@ -286,6 +286,12 @@ edOps.factory('eReq', [function () {
             });
             return me.response;
         };
+        this.delete = function (reqParams, data) {
+            window.Loader.delete(path + (reqParams !== null ? reqParams : ""), {data: data, dataType: window.Loader.dataTypes.json}, function (e, r) {
+                me.response = r;
+            });
+            return me.response;
+        };
         return {getInstance: me.getInstance};
     }]);
 edOps.factory('eModel', [
