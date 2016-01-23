@@ -198,8 +198,8 @@
                                                     <label for="form-field-select-2">
                                                         Set de datos <span class="symbol required"></span>
                                                     </label>
-                                                    <select ng-change="fieldsMapping()" id="form-field-select-2" class="form-control" name="datasetnameoption" ng-model="myModel.serie" ng-required="currentStep == 2">
-                                                        <option ng-repeat="option in series" value="{{option}}">{{option.name}}</option>
+                                                    <select ng-options="option as item.name for item in series track by item.id" ng-model="myModel.serie" ng-change="fieldsMapping()" id="form-field-select-2" class="form-control" name="datasetnameoption" ng-required="currentStep == 2">
+                                                        <!--<option ng-repeat="option in series" value="{{option}}">{{option.name}}</option>-->
                                                     </select>
                                                     <span class="error text-small block" ng-if="Form.datasetnameoption.$dirty && Form.datasetnameoption.$error.required">Set de datos es requerido.</span>
                                                     <span class="success text-small block" ng-if="Form.datasetnameoption.$valid"></span>

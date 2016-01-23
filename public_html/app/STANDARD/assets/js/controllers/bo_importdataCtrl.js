@@ -4,8 +4,10 @@
  */
 app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq', 'ngTableParams',
     function ($scope, toaster, FileUploader, eReq, ngTableParams) {
-        $scope.reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
-//        $scope.reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
+        //$scope.host = "http://localhost:5002/v1/opendata"
+        $scope.host = "http://181.209.238.78:5002/v1/opendata";
+        $scope.reqConfig = eReq.getInstance($scope.host);
+
         $scope.series = $scope.reqConfig.get("/series");
         $scope.currentStep = 1;
         $scope.myModel = {rowsFile: [], columnsFile: [], serie: {}};
@@ -22,9 +24,9 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
                         return;
                     }
                     if ($scope.currentStep === 3) {
-                        $scope.working=true;
+                        $scope.working = true;
                         $scope.reqConfig.post("/series/" + $scope.myModel.serie.id + "/attach/files/" + $scope.myModel.fileName);
-                        $scope.working=false;
+                        $scope.working = false;
                     }
                     nextStep();
                 } else {
@@ -87,7 +89,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
 
         //uploader
         var uploader = $scope.uploader = new FileUploader({name: "file",
-            url: 'http://localhost:5002/v1/opendata/files' });
+            url: $scope.host + '/files'});
 
         //table
         $scope.fileData = [];
@@ -152,6 +154,7 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
             console.info('onSuccessItem', fileItem, response, status, headers);
         };
         uploader.onErrorItem = function (fileItem, response, status, headers) {
+            alert("Error realizando carga: " + response);
             console.info('onErrorItem', fileItem, response, status, headers);
         };
         uploader.onCancelItem = function (fileItem, response, status, headers) {
