@@ -43,8 +43,10 @@ app.controller('bo_datasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams",
             $scope.editMode = false;
         };
         
-        $scope.delete=function(id){
+        $scope.delAction=function(id){
             reqConfig.delete("/series/" + id, null);
+            series = reqConfig.get("/series");
+            $scope.tableParams.reload();
         };
 
         $scope.editId = -1;
