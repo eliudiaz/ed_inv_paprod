@@ -106,16 +106,6 @@ app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq'
                 i++;
             });
         };
-//        $scope.tableParams = new ngTableParams({
-//            page: 1, // show first page
-//            count: 5 // count per page
-//        }, {
-//            total: $scope.fileData.length, // length of data
-//            getData: function ($defer, params) {
-//                return $scope.fileData;
-//            }
-//        });
-
         // FILTERS
 
         uploader.filters.push({

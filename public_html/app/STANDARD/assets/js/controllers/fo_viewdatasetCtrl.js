@@ -17,7 +17,8 @@ app.controller('fo_viewdatasetCtrl', ["$scope", "eReq", "$stateParams", function
 //                columns: [{uniqueName: "id"}, {uniqueName: "[id]"}],
 //                measures: [{uniqueName: "Quantity"}],
                 configuratorActive: true,
-                viewType: "grid"
+                viewType: "grid",
+                flatView:true
             };
             flexmonster.setReport(report);
         }
@@ -26,5 +27,5 @@ app.controller('fo_viewdatasetCtrl', ["$scope", "eReq", "$stateParams", function
 //            licenseKey: "Z544-5U1SI3-3D1H-2J22-0U37-4L2A-0M41-3F",
             licenseKey: "Z54C-3E2HS4-381I-2758-1U1P-6T0M-2K3S-3C05-572W-0I5E-2B1A-23",
             jsPivotCreationCompleteHandler: setPivotReport
-        });
+        },true);
     }]);
