@@ -4,7 +4,7 @@
  */
 app.controller('bo_importdataCtrl', ['$scope', 'toaster', 'FileUploader', 'eReq', 'ngTableParams',
     function ($scope, toaster, FileUploader, eReq, ngTableParams) {
-        //$scope.host = "http://localhost:5002/v1/opendata"
+//        $scope.host = "http://localhost:5002/v1/opendata"
         $scope.host = "http://181.209.238.78:5002/v1/opendata";
         $scope.reqConfig = eReq.getInstance($scope.host);
 

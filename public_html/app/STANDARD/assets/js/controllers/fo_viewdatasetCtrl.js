@@ -17,7 +17,7 @@ app.controller('fo_viewdatasetCtrl', ["$scope", "eReq", "$stateParams", function
 //                columns: [{uniqueName: "id"}, {uniqueName: "[id]"}],
 //                measures: [{uniqueName: "Quantity"}],
                 configuratorActive: true,
-                viewType: "grid",
+//                viewType: "grid",
                 flatView:true
             };
             flexmonster.setReport(report);
