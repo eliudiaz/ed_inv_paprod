@@ -5,10 +5,18 @@
  * controllers used for the dashboard
  */
 app.controller('bo_datasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
-        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
-//        var reqConfig = eReq.getInstance("http://localhost:5002/v1/opendata");
-        var series = reqConfig.get("/series");
+//        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
+//        $scope.host = "http://181.209.238.78:5002";
+        $scope.host = "http://localhost:5002";
+        $scope.getCatalog = function (name) {
+            return eReq.getInstance($scope.host + name);
+        };
+        $scope.categories = $scope.getCatalog("/category").get("")._embedded.category;
+        $scope.organizations = $scope.getCatalog("/organization").get("")._embedded.organization;
         $scope.editMode = false;
+
+        var reqConfig = eReq.getInstance($scope.host + "/v1/opendata");
+        var series = reqConfig.get("/series");
 
         $scope.editAction = function (serie) {
             $scope.nSerie = serie;
@@ -42,8 +50,8 @@ app.controller('bo_datasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams",
             series = reqConfig.get("/series");
             $scope.editMode = false;
         };
-        
-        $scope.delAction=function(id){
+
+        $scope.delAction = function (id) {
             reqConfig.delete("/series/" + id, null);
             series = reqConfig.get("/series");
             $scope.tableParams.reload();
