@@ -12,7 +12,7 @@
 <!-- start: FORM VALIDATION -->
 <br />
 <!-- /// controller:  'CropCtrl' -  localtion: assets/js/controllers/bo_categoriesCtrl.js /// -->
-<div class="row" ng-controller="bo_categoriesCtrl">
+<div class="row" ng-controller="bo_OrgsCtrl">
     <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">        
         <section class="box">
 
@@ -39,7 +39,7 @@
                             <label for="client">
                                 Cliente
                             </label>
-                            <select id="client" class="form-control" name="client" ng-model="mOrg.client" >
+                            <select placeholder="Clientes" id="client" class="form-control" name="client" ng-model="mOrg.client" >
                                 <option ng-repeat="option in clients" value="{{option}}">{{option.name}}</option>
                             </select>
                         </div>

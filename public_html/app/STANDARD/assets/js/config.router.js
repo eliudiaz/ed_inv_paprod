@@ -94,7 +94,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
             ncyBreadcrumb: {
                 label: 'Organizaciones'
             },
-            resolve: loadSequence('bo_orgsCtrl', 'ngTable')
+            resolve: loadSequence('bo_OrgsCtrl', 'ngTable')
         }).state('app.backoffice.clients', {
             url: "/clients",
             templateUrl: "assets/views/backoffice_clients.html",

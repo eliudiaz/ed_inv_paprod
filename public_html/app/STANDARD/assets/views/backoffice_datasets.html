@@ -39,7 +39,7 @@
                             <label for="organization">
                                 Organization
                             </label>
-                            <select ng-model="myModel.organization_id"  id="organization" class="form-control" name="organization">
+                            <select ng-model="nSerie.organization"  id="organization" class="form-control" name="organization">
                                 <option ng-repeat="option in organizations" value="{{option.id}}">{{option.name}}</option>
                             </select>
                         </div>
@@ -47,7 +47,7 @@
                             <label for="category">
                                 Category
                             </label>
-                            <select ng-model="myModel.category_id" id="category" class="form-control" name="category">
+                            <select ng-model="nSerie.category" id="category" class="form-control" name="category">
                                 <option ng-repeat="option in categories" value="{{option.id}}">{{option.name}}</option>
                             </select>
                         </div>

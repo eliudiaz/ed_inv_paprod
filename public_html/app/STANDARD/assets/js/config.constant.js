@@ -51,7 +51,7 @@ app.constant('JS_REQUIRES', {
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
         // *** open data controllers
         'bo_clientsCtrl': 'assets/js/controllers/bo_clientsCtrl.js',
-        'bo_orgsCtrl': 'assets/js/controllers/bo_orgsCtrl.js',
+        'bo_OrgsCtrl': 'assets/js/controllers/bo_OrgsCtrl.js',
         'bo_categoriesCtrl': 'assets/js/controllers/bo_categoriesCtrl.js',
         'bo_datasetsCtrl': 'assets/js/controllers/bo_datasetsCtrl.js',
         'bo_importdataCtrl': 'assets/js/controllers/bo_importdataCtrl.js',

@@ -5,15 +5,31 @@
  * controllers used for the dashboard
  */
 app.controller('bo_datasetsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
-//        var reqConfig = eReq.getInstance("http://181.209.238.78:5002/v1/opendata");
-//        $scope.host = "http://181.209.238.78:5002";
-        $scope.host = "http://localhost:5002";
+        $scope.host = "http://181.209.238.78:5002";
+//        $scope.host = "http://localhost:5002";
         $scope.getCatalog = function (name) {
             return eReq.getInstance($scope.host + name);
         };
-        $scope.categories = $scope.getCatalog("/category").get("")._embedded.category;
-        $scope.organizations = $scope.getCatalog("/organization").get("")._embedded.organization;
+        $scope.parsetRsHal = function ($r, entity) {
+            if ($r._embedded) {
+                var ls = eval("$r._embedded." + entity);
+                return $scope.parsetLsHal(ls);
+            }
+        };
+        $scope.parsetLsHal = function ($c) {
+            angular.forEach($c, function (v) {
+                var lnk = v._links.self.href;
+                v.id = lnk.substring(lnk.lastIndexOf("/") + 1, lnk.length);
+            });
+            return $c;
+        };
+        //        $scope.test = $scope.parsetRsHal($scope.getCatalog("/category").get(""),"category");
+        
+        $scope.categories = $scope.parsetLsHal($scope.getCatalog("/category").get("")._embedded.category);
+        $scope.organizations = $scope.parsetLsHal($scope.getCatalog("/organization").get("")._embedded.organization);
+
         $scope.editMode = false;
+
 
         var reqConfig = eReq.getInstance($scope.host + "/v1/opendata");
         var series = reqConfig.get("/series");

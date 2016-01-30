@@ -1,23 +1,52 @@
 /**
- * Created by Juliu on 12/01/2016.
+ * Created by edcracken 
  */
 /**
- * controllers used for the dashboard
+ * Organizations maintenance controllers 
  */
-app.controller('bo_categoriesCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
-//        var reqConfig = eReq.getInstance("http://181.209.238.78:5002");
-        $scope.getReq = function () {
-//            return eReq.getInstance("http://localhost:5002");
-            return eReq.getInstance("http://181.209.238.78:5002");            
+app.controller('bo_OrgsCtrl', ["eReq", "$scope", "$filter", "ngTableParams", function (eReq, $scope, $filter, ngTableParams) {
+//        $scope.host = "http://localhost:5002";
+        $scope.host="http://181.209.238.78:5002";
+        $scope.getCatalog = function ($name) {
+            return eReq.getInstance($scope.host + "/" + $name);
         };
-        $scope.data = $scope.getReq().get("/organization");
-        $scope.data = $scope.data._embedded.organization;
-        $scope.editMode = false;
+        /**
+         * 
+         * @param {type} $r
+         * @param {type} $entity
+         * @returns {type}
+         */
+        $scope.parsetRsHal = function ($r, $entity) {
+            if ($r._embedded) {
+                var ls = eval("$r._embedded." + $entity);
+                return $scope.parsetLsHal(ls);
+            }
+        };
+        /**
+         * 
+         * @param {type} $c
+         * @returns {unresolved}
+         */
+        $scope.parsetLsHal = function ($c) {
+            angular.forEach($c, function (v) {
+                var lnk = v._links.self.href;
+                v.id = lnk.substring(lnk.lastIndexOf("/") + 1, lnk.length);
+            });
+            return $c;
+        };
 
+
+        $scope.clients = $scope.parsetRsHal($scope.getCatalog("client").get(""), "client");
+        $scope.editMode = false;
+        
+        $scope.refresh = function () {
+            $scope.data = $scope.parsetRsHal($scope.getCatalog("organization").get(""), "organization");
+        };
         $scope.editAction = function (serie) {
             $scope.mOrg = serie;
             $scope.editMode = true;
         };
+        $scope.refresh();
         $scope.tableParams = new ngTableParams({
             page: 1, // show first page
             count: 5 // count per page
@@ -32,14 +61,14 @@ app.controller('bo_categoriesCtrl', ["eReq", "$scope", "$filter", "ngTableParams
         $scope.mOrg = {name: "", description: ""};
 
         $scope.save = function () {
+            $scope.mOrg.idAdClient = JSON.parse($scope.mOrg.client)._links.client.href;
             if ($scope.editMode) {
                 eReq.getInstance($scope.mOrg._links.self.href).put("", $scope.mOrg);
             } else {
-                $scope.getReq().post("/organization", $scope.mOrg);
+                eReq.getInstance("/organization").post("", $scope.mOrg);
             }
             $scope.mOrg = {name: "", description: "", fiels: []};
-            $scope.data = $scope.getReq().get("/organization");
-            $scope.data = $scope.data._embedded.organization;
+            $scope.refresh();
             $scope.editMode = false;
         };
 
