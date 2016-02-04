@@ -57,6 +57,7 @@ app.constant('JS_REQUIRES', {
         'bo_importdataCtrl': 'assets/js/controllers/bo_importdataCtrl.js',
         'fo_datasetsdashboardCtrl': 'assets/js/controllers/fo_datasetsdashboardCtrl.js',
         'fo_viewdatasetCtrl': 'assets/js/controllers/fo_viewdatasetCtrl.js',
+        'foViewDatasetMapCtrl': 'assets/js/controllers/foViewDatasetMapCtrl.js',
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'
     },

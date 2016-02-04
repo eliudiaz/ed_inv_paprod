@@ -104,13 +104,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
                 label: 'Clientes'
             },
             resolve: loadSequence('bo_clientsCtrl', 'ngTable')
+        }).state('app.backoffice.datasetmap', {
+                    url: "/maps",
+                    templateUrl: "assets/views/backoffice_dataset_map.html",
+                    resolve: loadSequence('ngMap', 'foViewDatasetMapCtrl'),
+                    title: "DataSet Map",
+                    ncyBreadcrumb: {
+                        label: 'DataSet Maps'
+                    }
         }).state('app.ui', {
-            url: '/ui',
-            template: '<div ui-view class="fade-in-up"></div>',
-            title: 'UI Elements',
-            ncyBreadcrumb: {
-                label: 'UI Elements'
-            }
+                    url: '/ui',
+                    template: '<div ui-view class="fade-in-up"></div>',
+                    title: 'UI Elements',
+                    ncyBreadcrumb: {
+                        label: 'UI Elements'
+                    }
         }).state('app.ui.modals', {
             url: '/modals',
             templateUrl: "assets/views/ui_modals.html",
